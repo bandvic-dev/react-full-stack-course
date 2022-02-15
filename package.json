@@ -1,0 +1,20 @@
+{
+  "name": "react-full-stack-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://working-web@bitbucket.org/working-web/react-full-stack-course.git"
+  },
+  "author": "Andrei Balanco",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/working-web/react-full-stack-course#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
