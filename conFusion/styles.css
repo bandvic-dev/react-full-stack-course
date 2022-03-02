@@ -13,6 +13,10 @@
     color: #ffffff;
 }
 
+.navbar .navbar-text a {
+    cursor: pointer;
+}
+
 .row-header{
     margin:0px auto;
     padding:0px;
