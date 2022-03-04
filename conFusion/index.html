@@ -117,9 +117,15 @@
                             <div class="form-group row">
                                 <label for="inlineRadioOptions" class="col-sm-2 col-form-label">Section</label>
                                 <div class="col-sm-10">
-                                    <div class="btn-group">
-                                        <input class="btn btn-success btn-sm" type="button" value="Non-Smoking">
-                                        <input class="btn btn-danger btn-sm" type="button" value="Smoking">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label for="" class="btn btn-success btn-sm active">
+                                            <input type="radio" name="is_smoke" class="d-none" value="Non-Smoking" checked>
+                                            Non-Smoking
+                                        </label>
+                                        <label for="" class="btn btn-danger btn-sm">
+                                            <input class="d-none" name="is_smoke" type="radio" value="Smoking">
+                                            Non-Smoking
+                                        </label>
                                     </div>
                                 </div>
                             </div>
