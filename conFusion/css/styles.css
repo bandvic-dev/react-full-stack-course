@@ -39,16 +39,28 @@ body {
 
 .carousel {
   background: #512DA8; }
-  .carousel .carousel-item {
-    height: 300px; }
-    .carousel .carousel-item img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-height: 300px; }
+
+.carousel .carousel-item {
+  height: 300px; }
+
+.carousel .carousel-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 300px; }
 
 #carouselButton {
   right: 0px;
   position: absolute;
   bottom: 0px;
   z-index: 1; }
+
+.modal .modal-header {
+  background: #512DA8;
+  color: #ddd; }
+
+.modal .modal-body {
+  background: #D1C4E9; }
+
+.modal .close {
+  color: #ddd; }
