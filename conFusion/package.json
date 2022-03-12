@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "start": "npm run lite",
+    "start": "npm run watch:all",
     "lite": "lite-server",
-    "scss": "node-sass --watch -o css/ css/"
+    "scss": "node-sass -o css/ css/",
+    "watch:scss": "onchange \"css/*.scss\" -- npm run scss",
+    "watch:all": "parallelshell \"npm run watch:scss\" \"npm run lite\""
   },
   "repository": {
     "type": "git",
@@ -17,13 +19,16 @@
   "homepage": "https://bitbucket.org/working-web/react-full-stack-course#readme",
   "devDependencies": {
     "lite-server": "^2.6.1",
-    "node-sass": "^6.0.0"
+    "node-sass": "^6.0.0",
+    "onchange": "^3.3.0",
+    "parallelshell": "^3.0.1"
   },
   "dependencies": {
     "bootstrap": "^4.0.0",
     "bootstrap-social": "^5.1.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "popper.js": "^1.12.9"
+    "popper.js": "^1.12.9",
+    "save-dev": "^0.0.1-security"
   }
 }
