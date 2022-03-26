@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import Menu from './MenuComponent';
+import Home from './HomeComponent';
 import DishDetail from './DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 class Main extends Component {
 
@@ -11,12 +13,7 @@ class Main extends Component {
         super(props);
         this.state = {
             dishes: DISHES,
-            selectedDish: null
         };
-    }
-
-    onDishSelect(dishId) {
-        this.setState({ selectedDish: dishId });
     }
 
     renderSelectedDish(dishes) {
@@ -30,11 +27,25 @@ class Main extends Component {
     }
 
     render() {
+        const HomePage = () => {
+            return (
+                <Home />
+            );
+        }
+
+        const MenuPage = () => {
+            return (
+                <Menu dishes={this.state.dishes}/>
+            );
+        }
         return (
             <div>
                 <Header />
-                <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-                {this.renderSelectedDish(this.state.dishes)}
+                <Routes>
+                    <Route path="/home" element={HomePage()} />
+                    <Route exact path="/menu" element={MenuPage()} />
+                    <Route path="*" element={<Navigate to="/home" replace />}/>
+                </Routes>
                 <Footer />
             </div>
         );
