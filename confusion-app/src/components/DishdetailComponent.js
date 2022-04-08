@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, List, Breadcrumb, BreadcrumbItem, Label, Button, Modal, ModalHeader, ModalBody, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 import { Loading } from "./LoadingComponent";
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -43,6 +43,8 @@ class DishDetail extends Component {
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm();
+        // event.preventDefault();
     }
 
     renderDish(dish) {
@@ -109,7 +111,7 @@ const CommentForm = (props) => {
         <Modal isOpen={props.isModalOpen} toggle={props.toggleModal}>
             <ModalHeader toggle={props.toggleModal}>Submit Comment</ModalHeader>
             <ModalBody>
-                <LocalForm onSubmit={props.handleSubmit}>
+                <Form model="feedback" onSubmit={props.handleSubmit}>
                     <Row className="form-group">
                         <Col>
                             <Label htmlFor="rating">Rating</Label>
@@ -147,7 +149,7 @@ const CommentForm = (props) => {
                         </Col>
                     </Row>
                     <Button type="submit" value="Submit" className="primary">Submit</Button>
-                </LocalForm>
+                </Form>
             </ModalBody>
         </Modal>
     </>);
