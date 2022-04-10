@@ -95,7 +95,7 @@ class DishDetail extends Component {
                     </div>
                     <div className="row mb-5">
                         {this.renderDish(this.props.dish)}
-                        <RenderComments comments={this.props.comments} addComment={this.props.addComment} dishId={this.props.dish.id} />
+                        <RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id} />
                     </div>
                 </div>
             );
@@ -154,7 +154,7 @@ const CommentForm = (props) => {
     </>);
 }
 
-const RenderComments = ({ comments, addComment, dishId }) => {
+const RenderComments = ({ comments, postComment, dishId }) => {
     if (comments !== null) {
         return (
             <div className="col-12 col-md-5 m-1">
@@ -169,7 +169,7 @@ const RenderComments = ({ comments, addComment, dishId }) => {
                         );
                     }) }
                 </List>
-                <CommentForm dishId={dishId} addComment={addComment} toggleModal={this.toggleModal} isModalOpen={this.state.isModalOpen} />
+                <CommentForm dishId={dishId} postComment={postComment} toggleModal={this.toggleModal} isModalOpen={this.state.isModalOpen} />
             </div>
         );
     } else {
