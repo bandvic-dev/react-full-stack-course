@@ -1,5 +1,5 @@
 /* eslint-disable no-fallthrough */
-import * as ActionTypes from './ActionsTypes';
+import * as ActionTypes from './ActionTypes';
 
 export const Dishes = (state = {
     isLoading: true,
