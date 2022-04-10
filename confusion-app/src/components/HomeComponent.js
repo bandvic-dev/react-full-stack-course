@@ -31,19 +31,19 @@ function Home(props) {
     return (
         <div className="container">
             <div className="row align-items-start mt-5 mb-5">
-                {/* <div className="col-12 col-md m-1">
+                <div className="col-12 col-md m-1">
                     <RenderCard item={props.dish}
                         isLoading={props.dishesLoading}
                         errMess={props.dishesErrMess} />
-                </div> */}
-                {/* <div className="col-12 col-md m-1">
+                </div>
+                <div className="col-12 col-md m-1">
                     <RenderCard item={props.promotions}
                         isLoading={props.promosLoading}
                         errMess={props.promosErrMess}/>
-                </div> */}
-                {/* <div className="col-12 col-md m-1">
+                </div>
+                <div className="col-12 col-md m-1">
                     <RenderCard item={ props.leader} />
-                </div> */}
+                </div>
             </div>
         </div>
     );
