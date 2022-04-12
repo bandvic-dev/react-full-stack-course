@@ -2,8 +2,9 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, List, Breadcrumb, BreadcrumbItem, Label, Button, Modal, ModalHeader, ModalBody, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Loading } from "./LoadingComponent";
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -67,6 +68,11 @@ class DishDetail extends Component {
         } else if (dish !== null) {
             return (
                 <div className="col-12 col-md-5 m-1">
+                <FadeTransform
+                    in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
                     <Card>
                         <CardImg top src={dish.image} alt={dish.name} />
                         <CardBody className="text-left">
@@ -74,6 +80,7 @@ class DishDetail extends Component {
                             <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
+                </FadeTransform>
                 </div>
             );
         }
@@ -161,14 +168,16 @@ const RenderComments = ({ comments, addComment, dishId }) => {
             <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
                 <List type="unstyled" className="text-left">
-                    {comments.map((comment) => {
-                        return (
-                            <li key={comment.id} className="mb-1">
-                                <p>{comment.comment}</p>
-                                <p>--{ comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                            </li>
-                        );
-                    }) }
+                    <Stagger in>
+                        {comments.map((comment) => {
+                            return (
+                                <li key={comment.id} className="mb-1">
+                                    <p>{comment.comment}</p>
+                                    <p>--{ comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                </li>
+                            );
+                        }) }
+                    </Stagger>
                 </List>
                 <CommentForm dishId={dishId} addComment={addComment} toggleModal={this.toggleModal} isModalOpen={this.state.isModalOpen} />
             </div>
