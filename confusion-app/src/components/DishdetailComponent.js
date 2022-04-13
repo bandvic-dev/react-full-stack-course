@@ -2,9 +2,10 @@
 import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle, List, Breadcrumb, BreadcrumbItem, Label, Button, Modal, ModalHeader, ModalBody, Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -44,6 +45,8 @@ class DishDetail extends Component {
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm();
+        // event.preventDefault();
     }
 
     renderDish(dish) {
@@ -66,6 +69,11 @@ class DishDetail extends Component {
         } else if (dish !== null) {
             return (
                 <div className="col-12 col-md-5 m-1">
+                <FadeTransform
+                    in
+                    transformProps={{
+                        exitTransform: 'scale(0.5) translateY(-50%)'
+                    }}>
                     <Card>
                         <CardImg top src={baseUrl + dish.image} alt={dish.name} />
                         <CardBody className="text-left">
@@ -73,6 +81,7 @@ class DishDetail extends Component {
                             <CardText>{dish.description}</CardText>
                         </CardBody>
                     </Card>
+                </FadeTransform>
                 </div>
             );
         }
@@ -110,7 +119,7 @@ const CommentForm = (props) => {
         <Modal isOpen={props.isModalOpen} toggle={props.toggleModal}>
             <ModalHeader toggle={props.toggleModal}>Submit Comment</ModalHeader>
             <ModalBody>
-                <LocalForm onSubmit={props.handleSubmit}>
+                <Form model="feedback" onSubmit={props.handleSubmit}>
                     <Row className="form-group">
                         <Col>
                             <Label htmlFor="rating">Rating</Label>
@@ -148,7 +157,7 @@ const CommentForm = (props) => {
                         </Col>
                     </Row>
                     <Button type="submit" value="Submit" className="primary">Submit</Button>
-                </LocalForm>
+                </Form>
             </ModalBody>
         </Modal>
     </>);
@@ -160,14 +169,16 @@ const RenderComments = ({ comments, postComment, dishId }) => {
             <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
                 <List type="unstyled" className="text-left">
-                    {comments.map((comment) => {
-                        return (
-                            <li key={comment.id} className="mb-1">
-                                <p>{comment.comment}</p>
-                                <p>--{ comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-                            </li>
-                        );
-                    }) }
+                    <Stagger in>
+                        {comments.map((comment) => {
+                            return (
+                                <li key={comment.id} className="mb-1">
+                                    <p>{comment.comment}</p>
+                                    <p>--{ comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                                </li>
+                            );
+                        }) }
+                    </Stagger>
                 </List>
                 <CommentForm dishId={dishId} postComment={postComment} toggleModal={this.toggleModal} isModalOpen={this.state.isModalOpen} />
             </div>
