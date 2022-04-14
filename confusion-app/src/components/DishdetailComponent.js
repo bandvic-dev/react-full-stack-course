@@ -88,6 +88,7 @@ class DishDetail extends Component {
     }
 
     render() {
+        console.log(this.props.dish);
         if(this.props.dish !== undefined) {
             return (
                 <div className="container">
@@ -104,7 +105,7 @@ class DishDetail extends Component {
                     </div>
                     <div className="row mb-5">
                         {this.renderDish(this.props.dish)}
-                        <RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id} />
+                        {/* <RenderComments comments={this.props.comments} postComment={this.props.postComment} dishId={this.props.dish.id} /> */}
                     </div>
                 </div>
             );
