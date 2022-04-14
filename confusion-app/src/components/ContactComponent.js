@@ -17,7 +17,7 @@ class Contact extends Component {
         // this.state = {};
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        
+
     }
 
     handleSubmit(values) {
@@ -26,7 +26,7 @@ class Contact extends Component {
     }
 
     render() {
-
+        
         return(
             <div className="container">
                 <div className="row mt-5">

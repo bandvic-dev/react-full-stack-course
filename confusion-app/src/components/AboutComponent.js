@@ -82,7 +82,7 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    <RenderLeader leaders={props.leaders}/>
+                    <RenderLeader leaders={props.leaders.leaders}/>
                 </div>
             </div>
         </div>
