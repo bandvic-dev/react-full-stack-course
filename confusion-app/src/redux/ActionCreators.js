@@ -45,9 +45,9 @@ export const postComment = (dishid, rating, author, comment) => (dispatch) => {
 
 //CONTACT FORM
 
-export const addFeedback = (comment) => ({
+export const addFeedback = (form) => ({
     type: ActionTypes.ADD_COMMENT,
-    payload: comment
+    payload: form
 });
 
 export const postFeedback = (firstname, lastname, telnum, email, agree, contactType, message) => (dispatch) => {
