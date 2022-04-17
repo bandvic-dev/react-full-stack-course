@@ -173,6 +173,7 @@ class DishDetail extends Component {
     }
 
     render() {
+        console.log(this.props.dish);
         if(this.props.dish !== undefined) {
             return (
                 <div className="container">
